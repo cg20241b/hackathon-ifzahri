@@ -141,8 +141,8 @@ camera.position.z = 5;
 
 // Load font from CDN
 const loader = new FontLoader();
-const fontUrl =
-  "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json";
+// const fontUrl = "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json";
+const fontUrl = './fonts/Poppins_Regular.json';
 
 loader.load(fontUrl, function (font) {
   const letterGeometry = new TextGeometry("a", {
