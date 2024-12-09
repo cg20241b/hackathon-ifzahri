@@ -176,10 +176,10 @@ var animate = function () {
   // Update cube position
   if (keyState["w"]) cube.position.y += 0.05;
   if (keyState["s"]) cube.position.y -= 0.05;
-  if (keyState['a']) camera.position.x -= 0.05;
-  if (keyState['d']) camera.position.x += 0.05;
+  if (keyState["a"]) camera.position.x -= 0.05;
+  if (keyState["d"]) camera.position.x += 0.05;
 
-//   Update renders based on positiions
+  //   Update renders based on positiions
   letterMaterial.uniforms.lightPos.value.copy(cube.position);
   numberMaterial.uniforms.lightPos.value.copy(cube.position);
   letterMaterial.uniforms.cameraPos.value.copy(camera.position);
@@ -187,6 +187,13 @@ var animate = function () {
 
   renderer.render(scene, camera);
 };
+
+// Resize window handling (update cameras)
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 // Animation
 animate();
