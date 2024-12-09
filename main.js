@@ -134,8 +134,7 @@ const cubeMaterial = new THREE.ShaderMaterial({
     `,
 });
 
-var geometry = new THREE.BoxGeometry(1, 1, 1);
-// var material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
 var cube = new THREE.Mesh(geometry, cubeMaterial);
 scene.add(cube);
 camera.position.z = 5;
@@ -177,6 +176,14 @@ var animate = function () {
   // Update cube position
   if (keyState["w"]) cube.position.y += 0.05;
   if (keyState["s"]) cube.position.y -= 0.05;
+  if (keyState['a']) camera.position.x -= 0.05;
+  if (keyState['d']) camera.position.x += 0.05;
+
+//   Update renders based on positiions
+  letterMaterial.uniforms.lightPos.value.copy(cube.position);
+  numberMaterial.uniforms.lightPos.value.copy(cube.position);
+  letterMaterial.uniforms.cameraPos.value.copy(camera.position);
+  numberMaterial.uniforms.cameraPos.value.copy(camera.position);
 
   renderer.render(scene, camera);
 };
